@@ -1,0 +1,32 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Banks", "Banks", "{9814AD02-ED4B-FDC4-FA66-20A5BAF7A37C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bank1Backend", "Bank1Backend", "{8B32961A-FE77-3E06-90B3-99FCEE08EACB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank1API", "Banks\Bank1Backend\Bank1API.csproj", "{60BBB75E-A2BC-7385-893A-1F63C0BF0102}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{60BBB75E-A2BC-7385-893A-1F63C0BF0102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60BBB75E-A2BC-7385-893A-1F63C0BF0102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60BBB75E-A2BC-7385-893A-1F63C0BF0102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60BBB75E-A2BC-7385-893A-1F63C0BF0102}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8B32961A-FE77-3E06-90B3-99FCEE08EACB} = {9814AD02-ED4B-FDC4-FA66-20A5BAF7A37C}
+		{60BBB75E-A2BC-7385-893A-1F63C0BF0102} = {8B32961A-FE77-3E06-90B3-99FCEE08EACB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {344E2670-6E05-4097-9B7A-BC0016CF85A8}
+	EndGlobalSection
+EndGlobal

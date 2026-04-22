@@ -86,3 +86,6 @@ In this project, banks are held in classes seperate from the project. Banks have
 4. once it is confirmed that the routing of both customer and merchant are within the payment system system routes card(model) to the customers bank for approval of the request.
 5. Bank of the customer approves or denies the request.
 6. Bank sends approval or denial of the transaction through the network to the merchant.
+
+# Bank entities
+banks should have 2 programs, a program that holds the banking system that handles routing, authentification, and authorization for transaction request for custimer and merchnt bank accounts and an admin portal where admins can add bank accounts, create customer user, create admin users, and modify said users.

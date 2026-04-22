@@ -1,0 +1,16 @@
+
+# Database connection variables
+DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=postgres
+DB_PASSWORD=#1St0rmy.
+
+#payment system database
+DB_NAME1=paymentsystem
+
+# BANK 1 DATABASE variables and other variables
+DB_NAME=Bank1DB
+BANK1_NAME=Chase
+BANK1_ADDRESS=123 Bank Street, Capital City, USA
+BANK1_PHONENUMBER=8066789876
+BANK1_ROUTINNUMBER=0917381183
