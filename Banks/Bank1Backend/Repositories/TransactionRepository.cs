@@ -52,5 +52,17 @@ namespace Bank1Backend.Repositories
             conn.Close();
             return balance;
         }
+
+        public void UpdateAccountBalance(string accountNumber, decimal newBalance)
+        {
+            using var conn = new NpgsqlConnection(_bank.ConnectionString);
+            conn.Open();
+            string query = "UPDATE user_accounts SET balance = @balance WHERE account_number = @acc";
+            using var cmd = new NpgsqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@balance", newBalance);
+            cmd.Parameters.AddWithValue("@acc", accountNumber);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
     }
 }

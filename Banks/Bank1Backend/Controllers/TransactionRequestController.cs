@@ -23,9 +23,9 @@ namespace Bank1Backend.Controllers
 
         // endpoint to recieve transation request and send true or false if the transaction is approved
         [HttpPost("validateTransaction")]
-        public IActionResult ValidateTransaction([FromBody] TransactionRequestModel request)
+        public IActionResult InitiateTransaction([FromBody] TransactionRequestModel request)
         {
-            var res = _service.ValidateTransaction(request);
+            var res = _service.ProcessTransaction(request);
             Console.WriteLine(res);
             using var doc = JsonDocument.Parse(res);
             var status = doc.RootElement.GetProperty("statusCode").GetInt32();
