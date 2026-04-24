@@ -26,7 +26,6 @@ namespace Bank1Backend.Controllers
         public IActionResult InitiateTransaction([FromBody] TransactionRequestModel request)
         {
             var res = _service.ProcessTransaction(request);
-            Console.WriteLine(res);
             using var doc = JsonDocument.Parse(res);
             var status = doc.RootElement.GetProperty("statusCode").GetInt32();
             return new ContentResult

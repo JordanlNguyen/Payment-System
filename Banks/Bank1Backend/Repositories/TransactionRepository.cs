@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Npgsql;
+using NpgsqlTypes;
 using Banks;
+using Bank1Backend.Models;
 
 namespace Bank1Backend.Repositories
 {
@@ -61,6 +63,117 @@ namespace Bank1Backend.Repositories
             using var cmd = new NpgsqlCommand(query, conn);
             cmd.Parameters.AddWithValue("@balance", newBalance);
             cmd.Parameters.AddWithValue("@acc", accountNumber);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public void PostTransactionInHistory(Guid transactionId, Dictionary<string, object> customerAccountInfo, decimal amount, TransactionRequestModel request, DateTime transactionDate)
+        {
+            // insert into transactionhistory
+            using var conn = new NpgsqlConnection(_bank.ConnectionString);
+            var customerId = Guid.Empty;
+            if (customerAccountInfo.TryGetValue("customer_user_id", out object? customerUserIdObj))
+            {
+                if (customerUserIdObj is Guid id)
+                {
+                    customerId = id;
+                }
+                else if (customerUserIdObj is string idText && Guid.TryParse(idText, out var parsedId))
+                {
+                    customerId = parsedId;
+                }
+            }
+
+            var accountNumber = customerAccountInfo.TryGetValue("account_number", out object? accNumObj)
+                ? accNumObj?.ToString() ?? string.Empty
+                : string.Empty;
+
+            var merchantName = request.MerchantName;
+            Guid? merchantId = Guid.TryParse(request.MerchantId, out var parsedMerchantId) ? parsedMerchantId : null;
+            const string status = "posted";
+
+            if (customerId == Guid.Empty)
+            {
+                throw new InvalidOperationException("customer_user_id is missing or invalid in customerAccountInfo.");
+            }
+
+            if (string.IsNullOrWhiteSpace(accountNumber))
+            {
+                throw new InvalidOperationException("account_number is missing in customerAccountInfo.");
+            }
+            
+            conn.Open();
+            string query = "INSERT INTO transactionhistory (id, customer_user_id, account_number, merchant_name, merchant_id, amount, transaction_date, status) VALUES (@transactionId, @customerUserId, @accountNumber, @merchantName, @merchantId, @amount, @transactionDate, @status)";
+            using var cmd = new NpgsqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@transactionId", transactionId);
+            cmd.Parameters.AddWithValue("@customerUserId", customerId);
+            cmd.Parameters.AddWithValue("@accountNumber", accountNumber);
+            cmd.Parameters.AddWithValue("@merchantName", merchantName);
+            if (merchantId.HasValue)
+            {
+                cmd.Parameters.AddWithValue("@merchantId", merchantId.Value);
+            }
+            else
+            {
+                cmd.Parameters.Add("@merchantId", NpgsqlDbType.Uuid).Value = DBNull.Value;
+            }
+            cmd.Parameters.AddWithValue("@amount", amount);
+            cmd.Parameters.AddWithValue("@transactionDate", transactionDate);
+            cmd.Parameters.AddWithValue("@status", status);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public bool UpdateTransferPool(decimal amount)
+        {
+            /*
+            1. create connection to database table of poolAmount
+            2. if withdrawing, ensure that there is enoguh money in the pool to be transferred out
+            3. update the pool table
+            NOTE: amount is positive if adding and negative if withdrawing
+            */
+            // create connection to database
+            using var conn = new NpgsqlConnection(_bank.ConnectionString);
+            conn.Open();
+            string querySelect = "SELECT amount FROM poolamount WHERE id = 1";
+            using var cmdSelect = new NpgsqlCommand(querySelect, conn);
+            decimal currentPoolAmount = 0;
+            using var reader = cmdSelect.ExecuteReader();
+            if (reader.Read())
+            {
+                currentPoolAmount = reader.GetDecimal(0);
+            }
+            reader.Close();
+
+            if (currentPoolAmount < amount)
+            {
+                // not enough money in the pool to transfer out
+                return false;
+            }
+
+            decimal newPoolAmount = currentPoolAmount + amount;
+            string queryUpdate = "UPDATE poolamount SET amount = @newAmount WHERE id = 1";
+            using var cmdUpdate = new NpgsqlCommand(queryUpdate, conn);
+            cmdUpdate.Parameters.AddWithValue("@newAmount", newPoolAmount);
+            cmdUpdate.ExecuteNonQuery();
+            conn.Close();
+            return true;
+        }
+
+        public void AddTranferPool(TransactionRequestModel request, Guid transactionId, DateTime transactionDate)
+        {
+            using var conn = new NpgsqlConnection(_bank.ConnectionString);
+            conn.Open();
+            string query = "INSERT INTO transfer_requests (transactionid, amount, transaction_date, source_account, destination_account, destination_routing_number, merchant_name, merchant_id) VALUES (@transactionid, @amount, @transactionDate, @sourceAccount, @destinationAccount, @destinationRoutingNumber, @merchantName, @merchantId)";
+            using var cmd = new NpgsqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@transactionid", transactionId);
+            cmd.Parameters.AddWithValue("@sourceAccount", request.SourceAccount);
+            cmd.Parameters.AddWithValue("@destinationAccount", request.DestinationAccount);
+            cmd.Parameters.AddWithValue("@amount", request.Amount);
+            cmd.Parameters.AddWithValue("@destinationRoutingNumber", request.DestinationRoutingNumber);
+            cmd.Parameters.AddWithValue("@transactionDate", transactionDate);
+            cmd.Parameters.AddWithValue("@merchantName", request.MerchantName);
+            cmd.Parameters.AddWithValue("@merchantId", request.MerchantId);
             cmd.ExecuteNonQuery();
             conn.Close();
         }
