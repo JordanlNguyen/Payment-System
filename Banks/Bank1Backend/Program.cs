@@ -36,6 +36,8 @@ Bank bank = new Bank(bankName, address, phoneNumber, routingNumber, connectionSt
 builder.Services.AddSingleton(bank);
 builder.Services.AddScoped<TransactionRepository>();
 builder.Services.AddScoped<TransactionService>();
+builder.Services.AddScoped<TransferfundService>(); //automatically starts backend service
+builder.Services.AddHostedService<TransferFundsSchedulerService>();
 builder.Services.AddControllers();
 
 var app = builder.Build();

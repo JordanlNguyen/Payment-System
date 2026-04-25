@@ -42,7 +42,7 @@ namespace Bank1Backend.Services
             _repository.UpdateAccountBalance((string)customerAccountInfo["account_number"], newBalance);
             _repository.PostTransactionInHistory(transactionId, customerAccountInfo, amount, request, transactionDate);
             _repository.UpdateTransferPool(amount);
-            _repository.AddTranferPool(request, transactionId, transactionDate);
+            _repository.AddTransferPool(request, transactionId, transactionDate);
         }
     }
 }

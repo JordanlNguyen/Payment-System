@@ -124,11 +124,12 @@ namespace Bank1Backend.Repositories
             conn.Close();
         }
 
+        // updates transfer fund pool
         public bool UpdateTransferPool(decimal amount)
         {
             /*
             1. create connection to database table of poolAmount
-            2. if withdrawing, ensure that there is enoguh money in the pool to be transferred out
+            2. if withdrawing, ensure that there is enough money in the pool to be transferred out
             3. update the pool table
             NOTE: amount is positive if adding and negative if withdrawing
             */
@@ -160,7 +161,8 @@ namespace Bank1Backend.Repositories
             return true;
         }
 
-        public void AddTranferPool(TransactionRequestModel request, Guid transactionId, DateTime transactionDate)
+        // adds info (amount, destination account, merchant name, merchant id, and status of transfer (pending or completed) to transfer pool table so that at the end of the day, the bank can process all transfer requests in the pool and update the status of each transfer request accordingly)
+        public void AddTransferPool(TransactionRequestModel request, Guid transactionId, DateTime transactionDate)
         {
             using var conn = new NpgsqlConnection(_bank.ConnectionString);
             conn.Open();
@@ -176,6 +178,31 @@ namespace Bank1Backend.Repositories
             cmd.Parameters.AddWithValue("@merchantId", request.MerchantId);
             cmd.ExecuteNonQuery();
             conn.Close();
+        }
+
+        public List<Dictionary<string, object>> GetPendingTransferPoolRows()
+        {
+            var results = new List<Dictionary<string, object>>();
+            using var conn = new NpgsqlConnection(_bank.ConnectionString);
+            conn.Open();
+
+            const string query = "SELECT * FROM transfer_pool WHERE status = @status";
+            using var cmd = new NpgsqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@status", "pending");
+
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                var row = new Dictionary<string, object>();
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    row[reader.GetName(i)] = reader.GetValue(i);
+                }
+
+                results.Add(row);
+            }
+
+            return results;
         }
     }
 }
