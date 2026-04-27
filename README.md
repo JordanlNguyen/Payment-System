@@ -89,3 +89,20 @@ In this project, banks are held in classes seperate from the project. Banks have
 
 # Bank entities
 banks should have 2 programs, a program that holds the banking system that handles routing, authentification, and authorization for transaction request for custimer and merchnt bank accounts and an admin portal where admins can add bank accounts, create customer user, create admin users, and modify said users.
+
+# Updated Transaction Flow
+![](resources/Updated Transaction Process.drawio.png)
+
+# Payment Network Design
+## API Endpoint requirments
+1. API should take in transaction of merchants with valid bank account
+2. API should look at customer routing number and route transaction request to right bank
+3. API should take approval/denial of request from customer bank and route message back to the merchant
+4. API should act as a highway for fund transfers
+    - API should take transfer request from bank including the destination of funds and funds itself and route it to the correct bank institution
+
+# JSON formatting
+All JSON responses should include status, success(T/F), and a message
+
+# Adding Banks to network
+when banks are created, they need to choose a payment facilitator. Banks can talk to a representative and register their bank in the network. This is usually done by cost but it is free for now.
