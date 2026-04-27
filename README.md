@@ -6,7 +6,7 @@ This project is meant for ethusiast that are interested in how payment systems w
 # Currency movement Process
 ![](resources/TransactionApprovalDiagram.drawio.png)
 # Class Diagram
-#![Class Diagram](resources/ClassDiagramForMerchantsCustomersandBanks.drawio.png)
+![Class Diagram](resources/ClassDiagramForMerchantsCustomersandBanks.drawio.png)
 # What does the payment network do
 1. routes tracations
 2. handles clearing and settling
@@ -91,7 +91,7 @@ In this project, banks are held in classes seperate from the project. Banks have
 banks should have 2 programs, a program that holds the banking system that handles routing, authentification, and authorization for transaction request for custimer and merchnt bank accounts and an admin portal where admins can add bank accounts, create customer user, create admin users, and modify said users.
 
 # Updated Transaction Flow
-![](resources/Updated Transaction Process.drawio.png)
+![](resources/UpdatedTransactionProcess.drawio.png)
 
 # Payment Network Design
 ## API Endpoint requirments
