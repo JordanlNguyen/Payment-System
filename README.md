@@ -91,7 +91,7 @@ In this project, banks are held in classes seperate from the project. Banks have
 banks should have 2 programs, a program that holds the banking system that handles routing, authentification, and authorization for transaction request for custimer and merchnt bank accounts and an admin portal where admins can add bank accounts, create customer user, create admin users, and modify said users.
 
 # Updated Transaction Flow
-![](resources/UpdatedTransactionProcess.png)
+![](resources/UpdatedTransactionProcess..png)
 
 # Payment Network Design
 ## API Endpoint requirments
