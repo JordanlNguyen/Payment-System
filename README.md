@@ -113,4 +113,4 @@ when banks are created, they need to choose a payment facilitator. Banks can tal
 1. Initiate Transaction Request
     - there is an endpoint that takes a request model, search the url of the bank by routing number, sends the request to the bank, then sends the reponse from the bank back to the merchant
 
-# temp
+# temp 2
