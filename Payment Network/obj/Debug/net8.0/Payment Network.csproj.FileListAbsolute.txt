@@ -1,0 +1,7 @@
+/Users/jordannguyen/Desktop/projects/Payment System/Payment Network/obj/Debug/net8.0/Payment Network.csproj.AssemblyReference.cache
+/Users/jordannguyen/Desktop/projects/Payment System/Payment Network/obj/Debug/net8.0/Payment Network.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jordannguyen/Desktop/projects/Payment System/Payment Network/obj/Debug/net8.0/Payment Network.AssemblyInfoInputs.cache
+/Users/jordannguyen/Desktop/projects/Payment System/Payment Network/obj/Debug/net8.0/Payment Network.AssemblyInfo.cs
+/Users/jordannguyen/Desktop/projects/Payment System/Payment Network/obj/Debug/net8.0/Payment Network.csproj.CoreCompileInputs.cache
+/Users/jordannguyen/Desktop/projects/Payment System/Payment Network/obj/Debug/net8.0/Payment Network.MvcApplicationPartsAssemblyInfo.cache
+/Users/jordannguyen/Desktop/projects/Payment System/Payment Network/obj/Debug/net8.0/Payment Network.sourcelink.json

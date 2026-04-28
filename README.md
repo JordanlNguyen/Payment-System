@@ -1,4 +1,6 @@
 # Payment-System
+# Goal
+Have this project working by may 14 with cleaned up documentation
 # Who is this projet for
 This project is meant for ethusiast that are interested in how payment systems work. This project deomonastates the real world sact of transaction and currency movement.
 # Transaction Approval Process
@@ -106,3 +108,7 @@ All JSON responses should include status, success(T/F), and a message
 
 # Adding Banks to network
 when banks are created, they need to choose a payment facilitator. Banks can talk to a representative and register their bank in the network. This is usually done by cost but it is free for now.
+
+# Payment Network Endpoints
+1. Initiate Transaction Request
+    - there is an endpoint that takes a request model, search the url of the bank by routing number, sends the request to the bank, then sends the reponse from the bank back to the merchant

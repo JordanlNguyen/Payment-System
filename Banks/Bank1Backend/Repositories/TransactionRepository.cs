@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Npgsql;
 using NpgsqlTypes;
 using Banks;
