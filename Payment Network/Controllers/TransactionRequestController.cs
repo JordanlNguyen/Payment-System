@@ -18,6 +18,7 @@ namespace PaymentNetwork.Controllers
         [HttpPost("validateTransaction")]
         public async Task<IActionResult> InitateTransaction([FromBody] TransactionRequestModel request)
         {
+            // send transaction request to service for prpcessing and will return the response from the receiving bank as is to the client
             var result = await _service.InitiateTransaction(request);
             using var doc = JsonDocument.Parse(result);
             int statusCode = doc.RootElement.GetProperty("statusCode").GetInt32();

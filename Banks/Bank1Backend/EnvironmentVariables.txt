@@ -11,3 +11,6 @@ BANK1_NAME=Chase
 BANK1_ADDRESS=123 Bank Street, Capital City, USA
 BANK1_PHONENUMBER=8066789876
 BANK1_ROUTINNUMBER=0917381183
+
+# Transaction Request endpoint
+http://localhost:5058/chaseApi/TransactionRequest/validateTransaction

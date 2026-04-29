@@ -16,11 +16,13 @@ namespace PaymentNetwork.Services
         }
         public async Task<string> InitiateTransaction(TransactionRequestModel request)
         {
+            // check if both banks are in network
             if (!_repository.AreBothBanksInNetwork(request.SourceRoutingNumber, request.DestinationRoutingNumber))
             {
-                return JsonSerializer.Serialize(new {statusCode = 400, success = false, message = "either bank not supported", receipt = "none"});
+                return JsonSerializer.Serialize(new {statusCode = 400, success = false, message = "neither bank supported", receipt = "none"});
             }
 
+            // search url of bank by routing number and send request to customer bank
             string url = _repository.SearchForUrl(request.DestinationRoutingNumber);
             var responseFromBank = await _httpClient.PostAsJsonAsync(url, request);
             var content = await responseFromBank.Content.ReadAsStringAsync();
