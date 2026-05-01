@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Payment Network Admin/1.0.0": {
+        "runtime": {
+          "Payment Network Admin.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Payment Network Admin/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

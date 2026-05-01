@@ -1,6 +1,26 @@
 # Payment-System
 # Goal
 Have this project working by may 14 with cleaned up documentation
+
+# Local database setup
+This project expects PostgreSQL to be running locally.
+
+1. Install PostgreSQL and make sure the `psql` CLI is available.
+2. On macOS or Linux, run `DB_PASSWORD=<your-postgres-password> bash ./scripts/setup-databases.sh`.
+3. On Windows PowerShell, run `$env:DB_PASSWORD="<your-postgres-password>"; ./scripts/setup-databases.ps1`.
+
+If you prefer, you can also run the raw SQL directly with `psql -f scripts/setup-databases.sql`.
+
+The setup script creates both required databases and seeds starter data:
+
+- `Bank1DB`
+- `paymentsystem`
+- bank account `123456789` with balance `2500.00`
+- bank account `987654321` with balance `900.00`
+- network routing entries for `0917381183` and `222000111`
+
+After the script finishes, the APIs have the tables and seed rows they already expect.
+
 # Who is this projet for
 This project is meant for ethusiast that are interested in how payment systems work. This project deomonastates the real world sact of transaction and currency movement.
 # Transaction Approval Process

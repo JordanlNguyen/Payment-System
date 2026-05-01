@@ -1,0 +1,15 @@
+/Users/jordannguyen/Desktop/projects/Payment System/Payment Network System/Payment Network Admin/obj/Debug/net8.0/Payment Network Admin.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jordannguyen/Desktop/projects/Payment System/Payment Network System/Payment Network Admin/obj/Debug/net8.0/Payment Network Admin.AssemblyInfoInputs.cache
+/Users/jordannguyen/Desktop/projects/Payment System/Payment Network System/Payment Network Admin/obj/Debug/net8.0/Payment Network Admin.AssemblyInfo.cs
+/Users/jordannguyen/Desktop/projects/Payment System/Payment Network System/Payment Network Admin/obj/Debug/net8.0/Payment Network Admin.csproj.CoreCompileInputs.cache
+/Users/jordannguyen/Desktop/projects/Payment System/Payment Network System/Payment Network Admin/obj/Debug/net8.0/Payment Network Admin.sourcelink.json
+/Users/jordannguyen/Desktop/projects/Payment System/Payment Network System/Payment Network Admin/bin/Debug/net8.0/Payment Network Admin
+/Users/jordannguyen/Desktop/projects/Payment System/Payment Network System/Payment Network Admin/bin/Debug/net8.0/Payment Network Admin.deps.json
+/Users/jordannguyen/Desktop/projects/Payment System/Payment Network System/Payment Network Admin/bin/Debug/net8.0/Payment Network Admin.runtimeconfig.json
+/Users/jordannguyen/Desktop/projects/Payment System/Payment Network System/Payment Network Admin/bin/Debug/net8.0/Payment Network Admin.dll
+/Users/jordannguyen/Desktop/projects/Payment System/Payment Network System/Payment Network Admin/bin/Debug/net8.0/Payment Network Admin.pdb
+/Users/jordannguyen/Desktop/projects/Payment System/Payment Network System/Payment Network Admin/obj/Debug/net8.0/Payment Network Admin.dll
+/Users/jordannguyen/Desktop/projects/Payment System/Payment Network System/Payment Network Admin/obj/Debug/net8.0/refint/Payment Network Admin.dll
+/Users/jordannguyen/Desktop/projects/Payment System/Payment Network System/Payment Network Admin/obj/Debug/net8.0/Payment Network Admin.pdb
+/Users/jordannguyen/Desktop/projects/Payment System/Payment Network System/Payment Network Admin/obj/Debug/net8.0/Payment Network Admin.genruntimeconfig.cache
+/Users/jordannguyen/Desktop/projects/Payment System/Payment Network System/Payment Network Admin/obj/Debug/net8.0/ref/Payment Network Admin.dll
