@@ -1,8 +1,4 @@
-﻿using Bank1Admin.AdminFunctions;
-using Bank1Admin.UserFunctions;
-using Npgsql;
-
-internal static class Program
+﻿internal static class Program
 {
     static int Main(string[] args)
     {
@@ -65,10 +61,24 @@ internal static class Program
         {
             Console.WriteLine();
             Console.WriteLine("Select an option:");
+            Console.WriteLine("--- User Management ---");
             Console.WriteLine("  1. Add User");
             Console.WriteLine("  2. Remove User");
-            Console.WriteLine("  3. Add User Account");
-            Console.WriteLine("  4. Remove User Account");
+            Console.WriteLine("  3. Update User Info");
+            Console.WriteLine("  4. View User Info");
+            Console.WriteLine("--- Account Management ---");
+            Console.WriteLine("  5. Add User Account");
+            Console.WriteLine("  6. Remove User Account");
+            Console.WriteLine("  7. Update Account Balance");
+            Console.WriteLine("  8. Freeze / Unfreeze Account");
+            Console.WriteLine("--- Transactions ---");
+            Console.WriteLine("  9. View Transaction History");
+            Console.WriteLine("  10. View Pending Transfers");
+            Console.WriteLine("  11. Cancel Pending Transfer");
+            Console.WriteLine("--- Admin ---");
+            Console.WriteLine("  12. Add Admin User");
+            Console.WriteLine("  13. Remove Admin User");
+            Console.WriteLine("  14. Change Admin Password");
             Console.WriteLine("  0. Logout");
             Console.WriteLine();
             Console.Write("> ");
@@ -81,16 +91,46 @@ internal static class Program
                     UserFunctions.RemoveUser(conn);
                     break;
                 case "3":
-                    UserFunctions.AddUserAccount(conn);
+                    UserFunctions.UpdateUserInfo(conn);
                     break;
                 case "4":
+                    UserFunctions.ViewUserInfo(conn);
+                    break;
+                case "5":
+                    UserFunctions.AddUserAccount(conn);
+                    break;
+                case "6":
                     UserFunctions.RemoveUserAccount(conn);
+                    break;
+                case "7":
+                    UserFunctions.UpdateAccountBalance(conn);
+                    break;
+                case "8":
+                    UserFunctions.FreezeUnfreezeAccount(conn);
+                    break;
+                case "9":
+                    UserFunctions.ViewTransactionHistory(conn);
+                    break;
+                case "10":
+                    UserFunctions.ViewPendingTransfers(conn);
+                    break;
+                case "11":
+                    UserFunctions.CancelPendingTransfer(conn);
+                    break;
+                case "12":
+                    AdminFunctions.AddAdminUser(conn);
+                    break;
+                case "13":
+                    AdminFunctions.RemoveAdminUser(conn);
+                    break;
+                case "14":
+                    AdminFunctions.ChangeAdminPassword(conn);
                     break;
                 case "0":
                     Console.WriteLine("Logged out.");
                     return;
                 default:
-                    Console.WriteLine("Invalid option. Please enter 0–4.");
+                    Console.WriteLine("Invalid option. Please enter 0–14.");
                     break;
             }
         }

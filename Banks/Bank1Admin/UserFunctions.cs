@@ -226,11 +226,24 @@ namespace Bank1Admin.UserFunctions
             Console.Write("Email or Phone Number: ");
             string? emailOrPhone = Console.ReadLine()?.Trim();
 
+            Console.WriteLine("Account Type:");
+            Console.WriteLine("  1. Checking");
+            Console.WriteLine("  2. Savings");
+            Console.Write("> ");
+            string? accountTypeInput = Console.ReadLine()?.Trim();
+            string accountType = accountTypeInput switch
+            {
+                "1" => "checking",
+                "2" => "savings",
+                _ => ""
+            };
+
             // 2. Validate inputs
             if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName) ||
-                string.IsNullOrWhiteSpace(mothersMaidenName) || string.IsNullOrWhiteSpace(emailOrPhone))
+                string.IsNullOrWhiteSpace(mothersMaidenName) || string.IsNullOrWhiteSpace(emailOrPhone) ||
+                string.IsNullOrWhiteSpace(accountType))
             {
-                Console.WriteLine("All fields are required. No account was created.");
+                Console.WriteLine("All fields are required and account type must be 1 or 2. No account was created.");
                 return;
             }
 
@@ -290,18 +303,20 @@ namespace Bank1Admin.UserFunctions
             // 4. Insert new account into user_accounts
             string accountHolderName = $"{firstName} {lastName}";
             const string insertQuery = @"INSERT INTO user_accounts
-                (customer_user_id, account_number, routing_number, account_holder_name, balance)
-                VALUES (@customerId, @accountNumber, @routingNumber, @holderName, @balance)";
+                (customer_user_id, account_number, routing_number, account_holder_name, balance, account_type)
+                VALUES (@customerId, @accountNumber, @routingNumber, @holderName, @balance, @accountType)";
             using var insertCmd = new NpgsqlCommand(insertQuery, conn);
             insertCmd.Parameters.AddWithValue("@customerId", customerId);
             insertCmd.Parameters.AddWithValue("@accountNumber", accountNumber);
             insertCmd.Parameters.AddWithValue("@routingNumber", routingNumber);
             insertCmd.Parameters.AddWithValue("@holderName", accountHolderName);
             insertCmd.Parameters.AddWithValue("@balance", initialBalance);
+            insertCmd.Parameters.AddWithValue("@accountType", accountType);
             insertCmd.ExecuteNonQuery();
 
             // 8. Return account number and routing number to the admin
             Console.WriteLine($"Account created successfully.");
+            Console.WriteLine($"  Account Type:   {accountType}");
             Console.WriteLine($"  Account Number: {accountNumber}");
             Console.WriteLine($"  Routing Number: {routingNumber}");
             Console.WriteLine($"  Opening Balance: {initialBalance:C}");
@@ -373,6 +388,42 @@ namespace Bank1Admin.UserFunctions
             deleteCmd.ExecuteNonQuery();
 
             Console.WriteLine($"Account {accountNumber} has been removed successfully.");
+        }
+
+        public void UpdateUserInfo(NpgsqlConnection conn)
+        {
+            Console.WriteLine("====== UPDATE USER INFO ======");
+            Console.WriteLine("This feature is not yet implemented.");
+        }
+
+        public void ViewUserInfo(NpgsqlConnection conn)
+        {
+            Console.WriteLine("====== VIEW USER INFO ======");
+            Console.WriteLine("This feature is not yet implemented.");
+        }
+
+        public void FreezeUnfreezeAccount(NpgsqlConnection conn)
+        {
+            Console.WriteLine("====== FREEZE / UNFREEZE ACCOUNT ======");
+            Console.WriteLine("This feature is not yet implemented.");
+        }
+
+        public void ViewTransactionHistory(NpgsqlConnection conn)
+        {
+            Console.WriteLine("====== VIEW TRANSACTION HISTORY ======");
+            Console.WriteLine("This feature is not yet implemented.");
+        }
+
+        public void ViewPendingTransfers(NpgsqlConnection conn)
+        {
+            Console.WriteLine("====== VIEW PENDING TRANSFERS ======");
+            Console.WriteLine("This feature is not yet implemented.");
+        }
+
+        public void CancelPendingTransfer(NpgsqlConnection conn)
+        {
+            Console.WriteLine("====== CANCEL PENDING TRANSFER ======");
+            Console.WriteLine("This feature is not yet implemented.");
         }
     }
 }
